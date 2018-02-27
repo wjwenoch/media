@@ -22,7 +22,7 @@ class DataFeeder():
 
     def __gen_data(self, subx, suby):
         questions, ents, train_sample_wts, output_labels, train_kbs, train_pads \
-            = load_data.convert2json(subx, suby, self.idx2w, self.idx2la)
+            = load_data.convert2data(subx, suby, self.idx2w, self.idx2la)
         X = None
         Y = output_labels
         if load_data.USE_CONTEXT_WINDOW:
@@ -37,8 +37,6 @@ class DataFeeder():
             X = [questions, ents]
         else:
             X = [questions]
-        if load_data.USE_KB_INPUT:
-            X.append(train_kbs)
         return X,Y
 
 
